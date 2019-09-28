@@ -1,0 +1,18 @@
+var SolutionArray= ["10 words here"]
+var RandomNum= math.random(number between 0-9)
+var lives = 5
+SolutionArray[RandomNum]= RandWord
+
+
+<div id= LetterSpaces></div>
+div LetterSpaces = SolutionArray[RandomNum].length
+var SolutionArray["word", "word", "word"....] *10 words*
+for (i = 0; i< SolutionArray[RandomNum].length; i++){
+    LetterSpaces append number of spaces
+}
+
+
+onkeyup StartGame()
+ 5 lives
+
+

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Chivo&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Guess the Movie Title!</h1>
+    <h2>Press Any Key to Start</h2>
+    <div>
+      <p>
+        Use the letter keys on your keyboard to try to guess the word. If you
+        guess a wrong letter 5 times, you will have to start again
+      </p>
+    </div>
+
+    <div id="game container">
+      <h2>Guess a Letter!</h2>
+      <div id="letter_div"></div>
+      <h2>Guesses:</h2>
+      <div id="guess_div"></div>
+      <h2>Lives:</h2>
+      <div id="lives_div"></div>
+      <div id="picture"></div>
+    </div>
+  </body>
+
+  <script text="javascript">
+    var movieTitle = [
+      "ferris bueller",
+      "waynes world",
+      "star wars",
+      "clueless",
+      "the room",
+      "harry potter"
+    ];
+    var randomNum = Math.floor(Math.random() * movieTitle.length); //random number generator
+    var letterDiv = document.getElementById("letter_div"); 
+    var guessDiv = document.getElementById("guess_div");
+    var livesDiv = document.getElementById("lives_div");
+    var spaceStr = ""; //empty string for "_"
+    var GuessConcat = []; //total guesses
+    var answerChar = []; //stores letter characters of solution
+    var RightGuess = []; //stores correct user inputs
+    var WrongGuess = []; //stores incorrect user inputs
+    var spaceArray = []; // stores chosenWord spaces
+    var chosenWord = movieTitle[randomNum]; //randomly selected movie titlem
+    var livesCount = 5;
+    var win = false;
+    var lettersLeft = chosenWord.length;
+    console.log(chosenWord);
+    console.log(letter_div);
+
+    livesDiv.innerHTML = livesCount; //display lives onkeyup
+
+
+    function GenerateMovie() {
+      for (var i = 0; i < chosenWord.length; i++) {
+        if (chosenWord[i] === " ") {
+          spaceStr = " ";
+          spaceArray[i] = spaceStr;
+        } else {
+          spaceStr = "_";
+          spaceArray[i] = spaceStr;
+          answerChar.push(chosenWord[i]);
+          console.log(spaceArray);
+        }
+      }
+      letterDiv.innerHTML = spaceArray.join(""); //writes "_" to letter-div
+      console.log("this is chosenword: " + chosenWord);
+      console.log(answerChar);
+      document.onkeydown = function(event) { //key event validation
+        var userKey = event.keyCode;
+        if (userKey > 64 && userKey < 91) { //if letter key
+          console.log("you pressed: " + userKey);
+          var userText = event.key.toLowerCase();
+          console.log("userText: " + userText);
+          if (livesCount > 0) { //if still alive
+           if(win===false){
+            var changed = false;
+            if (GuessConcat.indexOf(userText) === -1) { //check for duplicate guesses
+              for (var i = 0; i < chosenWord.length; i++) {
+                if (userText === chosenWord[i]) {
+                  changed = true;
+                  spaceArray[i] = userText;
+                  lettersLeft--;
+                  letterDiv.innerHTML = spaceArray.join("");
+                  console.log("you guessed right! in forloop");
+                  console.log(lettersLeft);
+                }
+              }
+              if (changed === true) {
+                RightGuess.push(userText);
+                console.log("right!!!" + RightGuess);
+                 if(lettersLeft<=1){
+                   alert("you win");
+                   win = true;
+                   return;
+                 }
+              } else {
+                livesCount--;
+                WrongGuess.push(userText);
+                guessDiv.innerHTML = WrongGuess.join(" ,");
+                livesDiv.innerHTML = livesCount;
+                console.log("wrong");
+                console.log("changed in else: " + changed);
+              }
+
+              GuessConcat = RightGuess.concat(WrongGuess); //concat guess arrays
+            } else {
+              alert("you already guessed that!");
+            }
+          
+          } 
+          } else {
+            alert("YOU DIED NOOOOOOOOO!!!!!");
+          }
+        } else {
+          alert("Invalid key, please try again!");
+        }
+
+
+        console.log(livesCount);
+        console.log(changed);
+      };
+    }
+
+    GenerateMovie();
+    console.log("outside func" + spaceStr);
+  </script>
+</html>

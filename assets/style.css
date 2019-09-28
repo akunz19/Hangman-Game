@@ -1,0 +1,44 @@
+body{
+  background-image: url("hodgepodge.png");
+  background-repeat: repeat; 
+}
+h1{
+    font-family: 'Chivo', sans-serif;
+    font-weight: bolder 900;
+    font-style: italic;
+    color: white;
+    text-align: center;
+}
+
+h2{
+    font-family: 'Chivo', sans-serif;
+    color: white;
+    text-align: center;
+
+}
+
+p{
+    font-family: 'Chivo', sans-serif;
+    color: white;
+    text-align: center;
+}
+
+#letter_div{
+   font-family: 'Chivo', sans-serif;
+    color: white;
+    text-align: center;
+    font-size: 24px
+}
+#guess_div{
+    font-family: 'Chivo', sans-serif;
+     color: white;
+     text-align: center;
+     font-size: 24px
+ }
+
+ #lives_div{
+    font-family: 'Chivo', sans-serif;
+     color: white;
+     text-align: center;
+     font-size: 24px
+ }
