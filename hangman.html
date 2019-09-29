@@ -13,7 +13,7 @@
   </head>
   <body>
     <h1>Guess the Movie Title!</h1>
-    <h2>Press Any Key to Start</h2>
+    <h2>Press A Letter Key to Start</h2>
     <div>
       <p>
         Use the letter keys on your keyboard to try to guess the word. If you
@@ -28,11 +28,20 @@
       <div id="guess_div"></div>
       <h2>Lives:</h2>
       <div id="lives_div"></div>
+      <div id="lose_div">
+        <h2 id="lose_count">Losses: </h2>
+      </div>
+      <div id="win_div">
+          <h2 id="win_count">Wins: </h2>
+        </div>
       <div id="picture"></div>
     </div>
   </body>
 
   <script text="javascript">
+  var winCount = 0;
+  var loseCount = 0;  
+  function StartGame (){    
     var movieTitle = [
       "ferris bueller",
       "waynes world",
@@ -45,6 +54,9 @@
     var letterDiv = document.getElementById("letter_div"); 
     var guessDiv = document.getElementById("guess_div");
     var livesDiv = document.getElementById("lives_div");
+    var winsDiv = document.getElementById("win_count");
+    var loseDiv = document.getElementById("lose_count");  
+    var letterDiv = document.getElementById("letter_div"); 
     var spaceStr = ""; //empty string for "_"
     var GuessConcat = []; //total guesses
     var answerChar = []; //stores letter characters of solution
@@ -99,10 +111,13 @@
               if (changed === true) {
                 RightGuess.push(userText);
                 console.log("right!!!" + RightGuess);
-                 if(lettersLeft<=1){
-                   alert("you win");
+                 if(lettersLeft<=1){ //win game 
                    win = true;
-                   return;
+                   winCount++
+                   winsDiv.innerHTML = "Wins: " + winCount;
+                   guessDiv.innerHTML = "";
+                   alert("you win! the word is: " + chosenWord);
+                   StartGame();
                  }
               } else {
                 livesCount--;
@@ -111,6 +126,13 @@
                 livesDiv.innerHTML = livesCount;
                 console.log("wrong");
                 console.log("changed in else: " + changed);
+                if(livesCount < 1) { 
+                  alert("YOU DIED NOOOOOOOOO!!!!!");
+                  loseCount++;
+                  loseDiv.innerHTML = "Losses: " + loseCount;
+                  guessDiv.innerHTML = "";
+                  StartGame();
+                }
               }
 
               GuessConcat = RightGuess.concat(WrongGuess); //concat guess arrays
@@ -119,9 +141,7 @@
             }
           
           } 
-          } else {
-            alert("YOU DIED NOOOOOOOOO!!!!!");
-          }
+          } 
         } else {
           alert("Invalid key, please try again!");
         }
@@ -134,5 +154,8 @@
 
     GenerateMovie();
     console.log("outside func" + spaceStr);
+  };
+
+  StartGame();
   </script>
 </html>
