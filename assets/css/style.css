@@ -1,19 +1,32 @@
 body{
-  background-image: url("hodgepodge.png");
+  background-image: url("../images/hodgepodge.png");
   background-repeat: repeat; 
 }
-h1{
+.header{
     font-family: 'Chivo', sans-serif;
-    font-weight: bolder 900;
+    font-weight: 900;
     font-style: italic;
     color: white;
     text-align: center;
+    font-size: 40px;
+    margin: 15px;
 }
 
-h2{
+.header2{
     font-family: 'Chivo', sans-serif;
     color: white;
     text-align: center;
+    font-size: 30px;
+    margin: 15px;
+
+}
+
+.header3{
+    font-family: 'Chivo', sans-serif;
+    color: white;
+    text-align: center;
+    font-size: 25px;
+    margin: 15px;
 
 }
 
@@ -21,13 +34,16 @@ p{
     font-family: 'Chivo', sans-serif;
     color: white;
     text-align: center;
+    font-size: 20px;
+    margin: 10px;
 }
 
 #letter_div{
    font-family: 'Chivo', sans-serif;
     color: white;
     text-align: center;
-    font-size: 24px
+    font-size: 40px;
+    margin: 30px;
 }
 #guess_div{
     font-family: 'Chivo', sans-serif;
